@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Simulation {% endblock %}
+{% block style %} <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> {% endblock %}
+{% block content %}
+    <!-- Simulation -->
+    <div class="quadrant" id="quadrant1">Simulation
+        <div style="text-align:center;">
+            <img class ="agent" src="{{ url_for('static', filename='product_images/alice.png') }}" alt="Image">
+        </div>        
+    </div>
+    <!-- Parameters -->
+    <div class="quadrant" id="quadrant2">Parameters
+        <!-- bacteria num -->
+        <div class="card">
+            <div class="card-header" data-target="subcards-container-1">
+                <h2>Bacteria Number</h2>
+                <input type="number" class="num-fields-input" name="num-fields-1" min="1" max="10" step="1" required>
+            </div>
+            <div id="subcards-container-1" class="subcards-container"></div>
+        </div>
+        <!-- Food num -->
+        <div class="card">
+            <div class="card-header" data-target="subcards-container-2">
+                <h2>Food Number</h2>
+                <input type="number" class="num-fields-input" name="num-fields-2" min="1" max="10" step="1" required>
+            </div>
+            <div id="subcards-container-2" class="subcards-container"></div>
+        </div>
+    </div>
+    <!-- Graph -->
+    <div class="quadrant" id="quadrant3">Graph</div>
+    <!-- Log -->
+    <div class="quadrant" id="quadrant4">Log</div>
+{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block js %}
+{% endblock %}

@@ -1,0 +1,85 @@
+python
+=======
+import requests
+import time
+import json
+
+# Define the endpoint for sending data
+endpoint = 'http://localhost:5000/data'
+
+# Simulate some data
+data = [1, 2, 3, 4, 5]
+
+# Send the data to the web application
+for i in range(len(data)):
+    payload = {'data': json.dumps(data[:i+1])}
+    response = requests.post(endpoint, data=payload)
+    time.sleep(1)
+
+flask
+======
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Define the endpoint for receiving data
+@app.route('/data', methods=['POST'])
+def receive_data():
+    data = request.form['data']
+    return jsonify({'success': True, 'data': data})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+html
+=====
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real-time Visualization</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+  </head>
+  <body>
+    <div id="chart"></div>
+
+    <script>
+      // Define the endpoint for getting data
+      var endpoint = 'http://localhost:5000/data';
+
+      // Set up the chart
+      var svg = d3.select('#chart')
+        .append('svg')
+        .attr('width', 500)
+        .attr('height', 500);
+
+      // Set up the data pipeline
+      function update() {
+        d3.json(endpoint, function(error, data) {
+          if (error) throw error;
+
+          // Update the chart with the new data
+          svg.selectAll('circle')
+            .data(data)
+            .enter()
+            .append('circle')
+            .attr('cx', function(d, i) { return i * 50 + 50; })
+            .attr('cy', function(d) { return 250 - d * 25; })
+            .attr('r', 10)
+            .attr('fill', 'blue');
+
+          // Schedule the next update
+          setTimeout(update, 1000);
+        });
+      }
+
+      // Start the data pipeline
+      update();
+    </script>
+  </body>
+</html>
+
+
+{'tea': 14.697446742864503, 'steak': 23.068141862510274,
+ 'pudding': 1.332994941509317, 'cake': 83.08240776634932, 'coffee': 93.26660946250077, 'jelly': 13.670000495659798}
+ {'tea': 15.300341235921337, 'steak': 23.77426119424041, 
+ 'pudding': 1.3737981194552578, 'cake': 87.36411887283755, 'coffee': 95.16029942097823, 'jelly': 13.947556877522496}

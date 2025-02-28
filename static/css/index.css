@@ -1,0 +1,30 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.quadrant{
+    width: 50vw;
+    height: 50vh;
+    font-size: large;
+    overflow: scroll;
+}
+#quadrant1{
+    background-color: aqua;
+}
+.agent{
+    width: auto;
+    height: 50vh;
+}
+#quadrant2{
+    background-color: beige;
+    display: flex;
+    flex-wrap: wrap;
+}
+#quadrant3{
+    background-color: blueviolet;
+}
+#quadrant4{
+    background-color: coral;
+}

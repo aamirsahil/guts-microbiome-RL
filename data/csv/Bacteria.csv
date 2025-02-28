@@ -1,0 +1,11 @@
+Source,Target,Type,Weight
+bac1,bac1,undirected,1
+bac1,bac2,undirected,0.5
+bac1,bac3,undirected,-2
+bac1,bac4,undirected,-5
+bac2,bac2,undirected,1
+bac2,bac3,undirected,5
+bac2,bac4,undirected,0
+bac3,bac3,undirected,1
+bac3,bac4,undirected,2
+bac4,bac4,undirected,1
